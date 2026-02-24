@@ -18,6 +18,7 @@ import '../styles/global.css';
   <body class="min-h-screen antialiased">
     <slot />
     <script>
+      // Scroll reveal + stagger
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -28,7 +29,71 @@ import '../styles/global.css';
         },
         { threshold: 0.1 }
       );
-      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+      document.querySelectorAll('.reveal, .reveal-stagger').forEach((el) => observer.observe(el));
+
+      // Mouse glow follow on cards
+      document.querySelectorAll('.glow-card').forEach((card) => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = (card as HTMLElement).getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          (card as HTMLElement).style.setProperty('--mouse-x', x + 'px');
+          (card as HTMLElement).style.setProperty('--mouse-y', y + 'px');
+        });
+      });
+
+      // Animated counters
+      const counterObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement;
+              const target = el.dataset.count;
+              if (!target) return;
+              const num = parseInt(target);
+              if (isNaN(num)) {
+                el.textContent = target;
+                return;
+              }
+              let current = 0;
+              const step = Math.ceil(num / 30);
+              const timer = setInterval(() => {
+                current += step;
+                if (current >= num) {
+                  current = num;
+                  clearInterval(timer);
+                }
+                el.textContent = current + '+';
+              }, 40);
+              counterObserver.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+      document.querySelectorAll('[data-count]').forEach((el) => counterObserver.observe(el));
+
+      // Active nav link highlight on scroll
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('nav a[href^="#"]');
+      
+      const navObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              navLinks.forEach((link) => {
+                link.classList.remove('text-accent', 'font-bold');
+                if (link.getAttribute('href') === '#' + id) {
+                  link.classList.add('text-accent', 'font-bold');
+                }
+              });
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+      sections.forEach((s) => navObserver.observe(s));
     </script>
   </body>
 </html>
