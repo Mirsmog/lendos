@@ -22,9 +22,6 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
-  background-image: 
-    radial-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px);
-  background-size: 32px 32px;
 }
 
 /* Scroll reveal animations */

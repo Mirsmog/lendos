@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import ParticleBackground from '../components/ParticleBackground.astro';
 ---
 
 <!doctype html>
@@ -16,7 +17,10 @@ import '../styles/global.css';
     <title>Zwine | Fullstack Developer</title>
   </head>
   <body class="min-h-screen antialiased">
-    <slot />
+    <ParticleBackground />
+    <div class="relative z-10">
+      <slot />
+    </div>
     <script>
       // Scroll reveal + stagger
       const observer = new IntersectionObserver(
