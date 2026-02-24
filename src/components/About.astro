@@ -1,0 +1,54 @@
+---
+const stats = [
+  { value: '3+', label: 'Года опыта' },
+  { value: '15+', label: 'Проектов' },
+  { value: '5+', label: 'Технологий' },
+  { value: '∞', label: 'Кофе выпито' },
+];
+---
+
+<div class="section-divider"></div>
+
+<section id="about" class="py-24 px-6">
+  <div class="max-w-[1120px] mx-auto reveal">
+    <h2 class="font-mono text-2xl md:text-[32px] font-bold mb-2">About</h2>
+    <div class="w-12 h-0.5 bg-accent mb-12"></div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+      <!-- Text — 3 cols -->
+      <div class="lg:col-span-3 rounded-xl border border-border bg-card p-8">
+        <p class="text-text-secondary leading-relaxed mb-6">
+          Fullstack-разработчик с фокусом на <span class="text-accent font-bold">Go</span> и <span class="text-accent font-bold">Node.js</span>. 
+          Создаю быстрые, надёжные и масштабируемые серверные системы. 
+          Пишу чистый код и ценю хорошую архитектуру.
+        </p>
+        <p class="text-text-secondary leading-relaxed mb-6">
+          Работаю с REST API, микросервисами, базами данных и инфраструктурой.
+          Имею опыт в Docker, CI/CD, мониторинге и деплое. 
+          Постоянно изучаю новые подходы и инструменты.
+        </p>
+        <p class="text-text-secondary leading-relaxed mb-8">
+          Увлекаюсь open-source, автоматизацией и CLI-утилитами. 
+          Верю, что хороший код — это код, который легко читать и поддерживать.
+        </p>
+
+        <div class="font-mono text-sm border-l-2 border-accent pl-4 py-2 bg-accent/5 rounded-r-lg">
+          <span class="text-accent">~/zwine</span> <span class="text-text-muted">$</span> <span class="text-text-secondary">echo $MOTTO</span>
+          <br/>
+          <span class="text-accent font-bold">"Build fast. Ship reliable."</span>
+        </div>
+      </div>
+
+      <!-- Stats — 2 cols -->
+      <div class="lg:col-span-2 grid grid-cols-2 gap-4">
+        {stats.map((stat) => (
+          <div class="flex flex-col items-center justify-center p-6 rounded-xl border border-border bg-card
+                      hover:border-accent/20 transition-all duration-200 text-center">
+            <span class="text-3xl md:text-4xl font-bold font-mono text-accent mb-2">{stat.value}</span>
+            <span class="text-xs text-text-muted uppercase tracking-wider">{stat.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
