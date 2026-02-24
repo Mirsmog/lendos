@@ -7,7 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://mirsmog.github.io',
-  base: '/lendos',
+  base: '/zwine.sh',
   integrations: [icon()],
   vite: {
     plugins: [tailwindcss()]
