@@ -6,6 +6,10 @@ import ParticleBackground from '../components/ParticleBackground.astro';
 <!doctype html>
 <html lang="en">
   <head>
+    <script is:inline>
+      const t = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    </script>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

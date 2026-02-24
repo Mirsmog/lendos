@@ -4,28 +4,28 @@ import { Icon } from 'astro-icon/components';
 const projects = [
   {
     title: 'API Gateway',
-    description: 'Высокопроизводительный API-шлюз с rate limiting, кэшированием и middleware pipeline. Обрабатывает 10k+ RPS.',
+    description: 'High-performance API gateway with rate limiting, caching and middleware pipeline. Handles 10k+ RPS.',
     tags: ['Go', 'Fiber', 'PostgreSQL', 'Redis'],
     status: 'Production',
     gradient: 'from-accent/20 to-accent/5',
   },
   {
     title: 'Task Manager',
-    description: 'RESTful сервис управления задачами с JWT авторизацией, WebSocket уведомлениями и ролевой моделью доступа.',
+    description: 'RESTful task management service with JWT auth, WebSocket notifications and role-based access control.',
     tags: ['Node.js', 'Express', 'MongoDB', 'JWT'],
     status: 'Production',
     gradient: 'from-[#3B82F6]/20 to-[#3B82F6]/5',
   },
   {
     title: 'CLI Tool',
-    description: 'Утилита командной строки для автоматизации dev-процессов: scaffolding, деплой, управление конфигами.',
+    description: 'Command-line utility for dev workflow automation: scaffolding, deployment and config management.',
     tags: ['Go', 'Cobra', 'YAML'],
     status: 'Open Source',
     gradient: 'from-[#8B5CF6]/20 to-[#8B5CF6]/5',
   },
   {
     title: 'Monitoring Dashboard',
-    description: 'Реал-тайм дашборд для мониторинга микросервисов с метриками, алертами и визуализацией логов.',
+    description: 'Real-time dashboard for microservice monitoring with metrics, alerts and log visualization.',
     tags: ['TypeScript', 'Node.js', 'Grafana', 'Docker'],
     status: 'In Progress',
     gradient: 'from-[#F97316]/20 to-[#F97316]/5',
@@ -39,7 +39,7 @@ const projects = [
   <div class="max-w-[1120px] mx-auto reveal">
     <h2 class="font-mono text-2xl md:text-[32px] font-bold mb-2">Projects</h2>
     <div class="w-12 h-0.5 bg-accent mb-4"></div>
-    <p class="text-text-secondary mb-12 max-w-[600px]">Избранные проекты, над которыми я работал</p>
+    <p class="text-text-secondary mb-12 max-w-[600px]">Featured projects I've been working on</p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal-stagger">
       {projects.map((project) => (

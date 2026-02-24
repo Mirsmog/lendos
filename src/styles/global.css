@@ -1,17 +1,37 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0A0A0F;
-  --color-card: #111118;
-  --color-border: #1A1A24;
-  --color-text: #E0E0E8;
-  --color-text-secondary: #9CA3AF;
-  --color-text-muted: #6B7280;
+  --color-bg: var(--theme-bg);
+  --color-card: var(--theme-card);
+  --color-border: var(--theme-border);
+  --color-text: var(--theme-text);
+  --color-text-secondary: var(--theme-text-secondary);
+  --color-text-muted: var(--theme-text-muted);
   --color-accent: #10B981;
   --color-accent-hover: #0D9668;
   --color-accent-pressed: #047857;
   --font-mono: 'JetBrains Mono', monospace;
   --font-sans: 'Inter', sans-serif;
+}
+
+/* Dark theme (default) */
+:root {
+  --theme-bg: #0A0A0F;
+  --theme-card: #111118;
+  --theme-border: #1A1A24;
+  --theme-text: #E0E0E8;
+  --theme-text-secondary: #9CA3AF;
+  --theme-text-muted: #6B7280;
+}
+
+/* Light theme */
+[data-theme="light"] {
+  --theme-bg: #F8F9FC;
+  --theme-card: #FFFFFF;
+  --theme-border: #E2E4EA;
+  --theme-text: #1A1A2E;
+  --theme-text-secondary: #4A4A68;
+  --theme-text-muted: #8888A0;
 }
 
 html {
@@ -22,7 +42,10 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* ---- Existing animations below, keep ALL of them ---- */
 
 /* Scroll reveal animations */
 .reveal {
@@ -30,7 +53,6 @@ body {
   transform: translateY(24px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
-
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
@@ -60,7 +82,6 @@ body {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
-
 .cursor-blink {
   animation: blink 1s step-end infinite;
 }
@@ -86,7 +107,7 @@ body {
   transform: translateY(0);
 }
 
-/* Gradient border card — mouse follow effect */
+/* Gradient border card */
 .glow-card {
   position: relative;
   overflow: hidden;
@@ -109,13 +130,11 @@ body {
   opacity: 1;
 }
 
-/* Counter animation */
 @keyframes countUp {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Floating animation for decorative elements */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-8px); }
@@ -124,7 +143,6 @@ body {
   animation: float 4s ease-in-out infinite;
 }
 
-/* Subtle gradient text */
 .gradient-text {
   background: linear-gradient(135deg, var(--color-accent) 0%, #34D399 50%, var(--color-accent) 100%);
   -webkit-background-clip: text;
@@ -132,7 +150,6 @@ body {
   background-clip: text;
 }
 
-/* Line drawing animation */
 @keyframes drawLine {
   from { width: 0; }
   to { width: 48px; }
@@ -141,7 +158,6 @@ body {
   animation: drawLine 0.6s ease-out forwards;
 }
 
-/* Typing animation for terminal */
 @keyframes typing {
   from { width: 0; }
   to { width: 100%; }
@@ -150,4 +166,15 @@ body {
   overflow: hidden;
   white-space: nowrap;
   animation: typing 1s steps(30, end) forwards;
+}
+
+/* Light theme adjustments */
+[data-theme="light"] .glow-blob {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, transparent 70%);
+}
+[data-theme="light"] .glow-card::before {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+}
+[data-theme="light"] .section-divider {
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.2), transparent);
 }

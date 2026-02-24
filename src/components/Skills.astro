@@ -5,15 +5,15 @@ const categories = [
   {
     label: 'Languages',
     skills: [
-      { name: 'Go', desc: 'Микросервисы, CLI', iconName: 'simple-icons:go' },
+      { name: 'Go', desc: 'Microservices, CLI', iconName: 'simple-icons:go' },
       { name: 'JavaScript', desc: 'Fullstack, ES2024+', iconName: 'simple-icons:javascript' },
-      { name: 'TypeScript', desc: 'Типизация, DX', iconName: 'simple-icons:typescript' },
+      { name: 'TypeScript', desc: 'Type safety, DX', iconName: 'simple-icons:typescript' },
     ],
   },
   {
     label: 'Backend',
     skills: [
-      { name: 'Node.js', desc: 'API, серверы', iconName: 'simple-icons:nodedotjs' },
+      { name: 'Node.js', desc: 'APIs, Servers', iconName: 'simple-icons:nodedotjs' },
       { name: 'Express', desc: 'REST API', iconName: 'simple-icons:express' },
       { name: 'Fiber', desc: 'Go web framework', iconName: 'simple-icons:go' },
     ],
@@ -21,10 +21,10 @@ const categories = [
   {
     label: 'Tools & Infra',
     skills: [
-      { name: 'Docker', desc: 'Контейнеризация', iconName: 'simple-icons:docker' },
-      { name: 'Git', desc: 'Контроль версий', iconName: 'simple-icons:git' },
-      { name: 'Linux', desc: 'Серверное окружение', iconName: 'simple-icons:linux' },
-      { name: 'PostgreSQL', desc: 'Реляционные БД', iconName: 'simple-icons:postgresql' },
+      { name: 'Docker', desc: 'Containerization', iconName: 'simple-icons:docker' },
+      { name: 'Git', desc: 'Version control', iconName: 'simple-icons:git' },
+      { name: 'Linux', desc: 'Server environment', iconName: 'simple-icons:linux' },
+      { name: 'PostgreSQL', desc: 'Relational databases', iconName: 'simple-icons:postgresql' },
     ],
   },
 ];
@@ -36,7 +36,7 @@ const categories = [
   <div class="max-w-[1120px] mx-auto reveal">
     <h2 class="font-mono text-2xl md:text-[32px] font-bold mb-2">Tech Stack</h2>
     <div class="w-12 h-0.5 bg-accent mb-4"></div>
-    <p class="text-text-secondary mb-12 max-w-[600px]">Инструменты и технологии, с которыми я работаю каждый день</p>
+    <p class="text-text-secondary mb-12 max-w-[600px]">Tools and technologies I work with every day</p>
 
     <div class="grid gap-12">
       {categories.map((cat) => (

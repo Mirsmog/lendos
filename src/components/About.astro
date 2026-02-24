@@ -1,9 +1,17 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 const stats = [
-  { value: '3+', label: 'Года опыта', count: '3' },
-  { value: '15+', label: 'Проектов', count: '15' },
-  { value: '5+', label: 'Технологий', count: '5' },
-  { value: '∞', label: 'Кофе выпито', count: '∞' },
+  { value: '3', label: 'Years exp.', suffix: '+' },
+  { value: '15', label: 'Projects', suffix: '+' },
+  { value: '5', label: 'Technologies', suffix: '+' },
+  { value: '∞', label: 'Coffees drunk', suffix: '' },
+];
+
+const highlights = [
+  { icon: 'lucide:server', title: 'Backend Focus', desc: 'Building scalable APIs, microservices and distributed systems' },
+  { icon: 'lucide:terminal', title: 'CLI Enthusiast', desc: 'Creating developer tools and automation utilities' },
+  { icon: 'lucide:git-branch', title: 'Open Source', desc: 'Contributing to and maintaining open-source projects' },
 ];
 ---
 
@@ -15,39 +23,66 @@ const stats = [
     <div class="w-12 h-0.5 bg-accent mb-12"></div>
 
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
-      <!-- Text — 3 cols -->
-      <div class="lg:col-span-3 rounded-xl border border-border bg-card p-8">
-        <p class="text-text-secondary leading-relaxed mb-6">
-          Fullstack-разработчик с фокусом на <span class="text-accent font-bold">Go</span> и <span class="text-accent font-bold">Node.js</span>. 
-          Создаю быстрые, надёжные и масштабируемые серверные системы. 
-          Пишу чистый код и ценю хорошую архитектуру.
-        </p>
-        <p class="text-text-secondary leading-relaxed mb-6">
-          Работаю с REST API, микросервисами, базами данных и инфраструктурой.
-          Имею опыт в Docker, CI/CD, мониторинге и деплое. 
-          Постоянно изучаю новые подходы и инструменты.
-        </p>
-        <p class="text-text-secondary leading-relaxed mb-8">
-          Увлекаюсь open-source, автоматизацией и CLI-утилитами. 
-          Верю, что хороший код — это код, который легко читать и поддерживать.
-        </p>
+      <!-- Main content — 3 cols -->
+      <div class="lg:col-span-3 space-y-6">
+        <!-- Bio card -->
+        <div class="rounded-xl border border-border bg-card p-8">
+          <p class="text-text-secondary leading-relaxed mb-6">
+            Fullstack developer with a focus on <span class="text-accent font-bold">Go</span> and <span class="text-accent font-bold">Node.js</span>. 
+            I build fast, reliable and scalable server-side systems. 
+            I write clean code and value solid architecture.
+          </p>
+          <p class="text-text-secondary leading-relaxed mb-6">
+            Experienced with REST APIs, microservices, databases and infrastructure.
+            Hands-on with Docker, CI/CD, monitoring and deployment.
+            Always exploring new approaches and tools.
+          </p>
+          <p class="text-text-secondary leading-relaxed mb-8">
+            Passionate about open-source, automation and CLI tools.
+            I believe good code is code that's easy to read and maintain.
+          </p>
 
-        <div class="font-mono text-sm border-l-2 border-accent pl-4 py-2 bg-accent/5 rounded-r-lg">
-          <span class="text-accent">~/zwine</span> <span class="text-text-muted">$</span> <span class="text-text-secondary">echo $MOTTO</span>
-          <br/>
-          <span class="text-accent font-bold">"Build fast. Ship reliable."</span>
+          <div class="font-mono text-sm border-l-2 border-accent pl-4 py-2 bg-accent/5 rounded-r-lg">
+            <span class="text-accent">~/zwine</span> <span class="text-text-muted">$</span> <span class="text-text-secondary">echo $MOTTO</span>
+            <br/>
+            <span class="text-accent font-bold">"Build fast. Ship reliable."</span>
+          </div>
+        </div>
+
+        <!-- Highlight cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 reveal-stagger">
+          {highlights.map((h) => (
+            <div class="glow-card rounded-xl border border-border bg-card p-5 hover:border-accent/20 transition-all duration-200">
+              <div class="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center mb-3 text-accent">
+                <Icon name={h.icon} class="w-5 h-5" />
+              </div>
+              <h4 class="text-sm font-bold mb-1">{h.title}</h4>
+              <p class="text-xs text-text-muted leading-relaxed">{h.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
 
       <!-- Stats — 2 cols -->
       <div class="lg:col-span-2 grid grid-cols-2 gap-4">
         {stats.map((stat) => (
-          <div class="flex flex-col items-center justify-center p-6 rounded-xl border border-border bg-card
+          <div class="glow-card flex flex-col items-center justify-center p-6 rounded-xl border border-border bg-card
                       hover:border-accent/20 transition-all duration-200 text-center">
-            <span class="text-3xl md:text-4xl font-bold font-mono text-accent mb-2" data-count={stat.count}>{stat.count === '∞' ? '∞' : '0+'}</span>
+            <span class="text-3xl md:text-4xl font-bold font-mono text-accent mb-2" data-count={stat.value}>{stat.value === '∞' ? '∞' : '0' + stat.suffix}</span>
             <span class="text-xs text-text-muted uppercase tracking-wider">{stat.label}</span>
           </div>
         ))}
+
+        <!-- Mini terminal card spanning 2 cols -->
+        <div class="col-span-2 rounded-xl border border-border bg-card p-5 font-mono text-xs">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-2 h-2 rounded-full bg-accent"></span>
+            <span class="text-text-muted">currently</span>
+          </div>
+          <p class="text-text-secondary"><span class="text-accent">→</span> Learning Rust & systems programming</p>
+          <p class="text-text-secondary mt-1"><span class="text-accent">→</span> Building developer tools in Go</p>
+          <p class="text-text-secondary mt-1"><span class="text-accent">→</span> Contributing to open-source</p>
+        </div>
       </div>
     </div>
   </div>

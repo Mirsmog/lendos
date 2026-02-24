@@ -34,6 +34,16 @@
     const ACCENT = new Color(0x10B981);
     const DIM = new Color(0x1A1A24);
 
+    // Theme-aware colors
+    let isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const ACCENT_DARK = new Color(0x10B981);
+    const ACCENT_LIGHT = new Color(0x059669);
+    const DIM_DARK = new Color(0x1A1A24);
+    const DIM_LIGHT = new Color(0xCCCCD8);
+
+    ACCENT.copy(isLight ? ACCENT_LIGHT : ACCENT_DARK);
+    DIM.copy(isLight ? DIM_LIGHT : DIM_DARK);
+
     // --- Particles ---
     const positions = new Float32Array(PARTICLE_COUNT * 3);
     const velocities: Vector3[] = [];
@@ -63,13 +73,23 @@
       color: ACCENT,
       size: 0.35,
       transparent: true,
-      opacity: 0.7,
+      opacity: isLight ? 0.5 : 0.7,
       sizeAttenuation: true,
       blending: AdditiveBlending,
     });
 
     const particles = new Points(particleGeometry, particleMaterial);
     scene.add(particles);
+
+    // Watch for theme changes
+    const themeObserver = new MutationObserver(() => {
+      isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      ACCENT.copy(isLight ? ACCENT_LIGHT : ACCENT_DARK);
+      DIM.copy(isLight ? DIM_LIGHT : DIM_DARK);
+      particleMaterial.color = ACCENT;
+      particleMaterial.opacity = isLight ? 0.5 : 0.7;
+    });
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
     // --- Lines ---
     const maxLines = PARTICLE_COUNT * PARTICLE_COUNT;
